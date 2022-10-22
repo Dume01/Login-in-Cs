@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Parse stree structure defined by user
+
+struct NodeParseTree  
+{ 
+  char key; 
+  struct NodeParseTree *left; 
+  struct NodeParseTree *right; 
+  NodeParseTree(char k){
+      key=k;
+      left=right=NULL;
+  }
+};
+
+// For inorder traversal recursive algo
+void inorder(NodeParseTree *root){
+    if(root!=NULL){
+        inorder(root->left);
+        cout<<root->key<<" ";
+        inorder(root->right);    
+    }
+}  
+
+int main() {
+	// The parse tree isn't inputed we can make the parse tree by appropriate operations
+	NodeParseTree *root=new NodeParseTree('^');
+	root->left=new NodeParseTree('p');
+	root->right=new NodeParseTree('>');
+	root->right->left=new NodeParseTree('~');
+	root->right->right=new NodeParseTree('~');
+        root->right->right->right=new NodeParseTree('p');
+	root->right->left->right=new NodeParseTree('q');
+	//The following function will print the inorder traversal of the tree but will have no brackets
+	inorder(root);
+}
