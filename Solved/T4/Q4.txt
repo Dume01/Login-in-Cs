@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+//Parse Tree structre defined by user
+
+struct NodeOfTree  
+{ 
+  char key; 
+  struct NodeOfTree *left; 
+  struct NodeOfTree *right; 
+  NodeOfTree(char k){
+      key=k;
+      left=right=NULL;
+  }
+};
+
+//Function we compute the height of the tree with (standard algo)
+int height(NodeOfTree *root){
+    if(root==NULL)
+        return 0;
+    else
+        return (1+max(height(root->left),height(root->right)));
+}  
+
+int main() {
+	// Self made parse tree not taken by input 	
+	
+	NodeOfTree *root=new NodeOfTree('^');
+	
+	root->left=new NodeOfTree('p');
+	
+	root->right=new NodeOfTree('>');
+	
+	root->right->left=new NodeOfTree('~');
+	
+	root->right->right=new NodeOfTree('~');
+        
+	root->right->right->right=new NodeOfTree('p');
+	
+	root->right->left->right=new NodeOfTree('p');
+	
+	cout<<"Height of the Parse Tree is "<< height(root);
+}
